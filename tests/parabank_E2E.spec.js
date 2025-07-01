@@ -1,0 +1,40 @@
+import { test, expect } from '@playwright/test';
+// E2E TESTING OF KEY FUNCTIONALITIES LIKE BILL PAYMENTS AND TRANSFER
+
+test('test', async ({ page }) => {
+  await page.goto('https://parabank.parasoft.com/parabank/index.htm?ConnType=JDBC');
+  await page.locator('input[name="username"]').click();
+  await page.locator('input[name="username"]').fill('john');
+  await page.locator('input[name="password"]').click();
+  await page.locator('input[name="password"]').fill('demo');
+  await page.getByRole('button', { name: 'Log In' }).click();
+  await page.getByRole('link', { name: 'Transfer Funds' }).click();
+  await page.locator('#amount').click();
+  await page.locator('#amount').fill('1000');
+  await page.locator('#fromAccountId').selectOption('17451');
+  await page.getByRole('button', { name: 'Transfer' }).click();
+  await page.getByRole('link', { name: 'Bill Pay' }).click();
+  await page.locator('input[name="payee.name"]').click();
+  await page.locator('input[name="payee.name"]').fill('ddkddk');
+  await page.locator('input[name="payee.name"]').press('Tab');
+  await page.locator('input[name="payee.address.street"]').fill('dkdddkd');
+  await page.locator('input[name="payee.address.street"]').press('Tab');
+  await page.locator('input[name="payee.address.city"]').fill('fkffkfkf');
+  await page.locator('input[name="payee.address.city"]').press('Tab');
+  await page.locator('input[name="payee.address.state"]').fill('sksksks');
+  await page.locator('input[name="payee.address.state"]').press('Tab');
+  await page.locator('input[name="payee.address.zipCode"]').fill('fkffkf');
+  await page.locator('input[name="payee.address.zipCode"]').press('Tab');
+  await page.locator('input[name="payee.phoneNumber"]').fill('0987654321');
+  await page.locator('input[name="payee.accountNumber"]').click();
+  await page.locator('input[name="payee.accountNumber"]').fill('123456');
+  await page.locator('input[name="verifyAccount"]').click();
+  await page.locator('input[name="verifyAccount"]').fill('123456');
+  await page.locator('input[name="amount"]').click();
+  await page.locator('input[name="amount"]').fill('50');
+  await page.getByRole('button', { name: 'Send Payment' }).click();
+  await page.locator('input[name="verifyAccount"]').click();
+  await page.locator('input[name="verifyAccount"]').fill('123456');
+  await page.getByRole('button', { name: 'Send Payment' }).click();
+  await page.getByRole('link', { name: 'Log Out' }).click();
+});
